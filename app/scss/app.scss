@@ -1,0 +1,25 @@
+#allmap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    font-family: "微软雅黑";
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+    color: #FFF;
+}
+input:-moz-placeholder, textarea:-moz-placeholder { 
+    color:#FFF;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { 
+    color: #FFF;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+    color: #FFF;
+}
