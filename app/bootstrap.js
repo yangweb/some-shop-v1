@@ -2,24 +2,22 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from  'vue-resource';
 import Toast from './plugins/toast';
+import TouchRipple from 'vue-touch-ripple';
 
-import VueCarbon from 'vue-carbon';
 
-import 'vue-carbon/dist/vue-carbon.css' // 加载css文件
-Vue.use(VueCarbon)
+
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(Toast);
+Vue.use(TouchRipple)
 
 // Style
-
+import './assets/css/normalize.css';
+import './assets/css/flex.css';
 import './assets/css/font-awesome.css';
-import './assets/css/animate.css';
-import './assets/css/style.css';
+
 import './scss/app.scss';
-
-
 
 // Js
 import './assets/js/bootstrap';

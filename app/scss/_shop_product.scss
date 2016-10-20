@@ -1,0 +1,22 @@
+.shop_product{
+    background-color: rgba(239, 239, 239, 0.93);
+}
+.shop_product_header{
+    position: relative;
+    text-align: center;
+    height: 36px;
+    line-height: 36px;
+    background-color: rgba(255, 255, 255,.8);
+    .shop_black_btn,.shop_product_top{
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+}
+
+.shop_product_main{
+    min-height: 200px;
+}

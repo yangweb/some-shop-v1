@@ -17,18 +17,39 @@
                 </div>
                 <button type="submit" 
                         class="btn btn-primary block full-width m-b" 
-                        @click="login">登陆
+                        @click="login"
+                        v-touch-ripple>登陆
                 </button>
             </form>
         </div>
     </div>
 </template>
 <style lang="stylus">
+.middle-box
+    text-align:center
+    max-width:360px
+    margin:0 auto
 .login
     position: relative
     top: 50%
     padding:0 10px
     transform: translateY(-50%)
+    .form-group
+        margin:10px 0
+    input
+        display:block
+        width:100%
+        border:1px solid rgb(92, 184, 95)
+        line-height: 30px
+        color:#FFF
+        text-indent:5px
+    .btn
+        display:block
+        width:100%
+        border:none
+        line-height: 30px
+        color:#FFF
+        background-color:rgb(92, 184, 95)
 </style>
 <script>
 
@@ -49,13 +70,17 @@
 
                 let vm = this;
 
-                auth.login(vm, vm.credentials).then(function () {
+                if(vm.credentials.name === '' || vm.credentials.name === ''){
+                   return false;
+                }
+
+
+                 auth.login(vm, vm.credentials).then(function () {
                     vm.$route.router.go('/main/dashboard');
                     vm.$toast['success']('登陆成功');
-                }, function (error) {
-                    vm.$toast['success'](error.msg);
+                    }, function (error) {
+                        vm.$toast['success'](error.msg);
                 });
-
             }
         }
     }

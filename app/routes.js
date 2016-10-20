@@ -4,6 +4,7 @@ import LayoutComponent from './views/layout';
 
 
 import DashboardComponent from './views/dashboard';
+import ShopProduct from './views/shop_product/edit';
 
 
 
@@ -20,6 +21,10 @@ export default function routeConfig(router) {
                 '/dashboard': {
                     name: 'dashboard',
                     component: DashboardComponent
+                },
+                '/shop_product/:id':{
+                    name: 'shop_product',
+                    component: ShopProduct
                 }
             }
         }

@@ -1,7 +1,6 @@
 <template>
     <div id="app-box">
         <router-view></router-view>
-        <bottom></bottom>
     </div>
 </template>
 

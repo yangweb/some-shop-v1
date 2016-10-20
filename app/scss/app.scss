@@ -1,25 +1,10 @@
-#allmap {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    margin: 0;
-    font-family: "微软雅黑";
-}
-.fl{
-    float: left;
-}
-.fr{
-    float: right;
-}
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
-    color: #FFF;
-}
-input:-moz-placeholder, textarea:-moz-placeholder { 
-    color:#FFF;
-}
-input::-moz-placeholder, textarea::-moz-placeholder { 
-    color: #FFF;
-}
-input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
-    color: #FFF;
-}
+@import 'color';
+@import 'commant';
+
+@import 'from';
+@import 'header';
+@import 'search';
+@import 'shop_list';
+@import 'checkbox';
+@import 'shop_product';
+// @import 'radio';
