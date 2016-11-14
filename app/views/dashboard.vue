@@ -26,7 +26,7 @@
                     <input class="jui-checkbox" type="radio" id="jui-{{d.id}}" name="radio-shop"  value="{{d.id}}" />
                     <label for="jui-{{d.id}}"></label>
                     <span class="shop-list-title">
-                        <a v-link="{ name: 'shop_product', params: { id: d.id }}">
+                        <a v-link="{ name: 'shop_product', params: { shopid: d.id }}">
                         {{d.title}}
                         </a>
                     </span>
