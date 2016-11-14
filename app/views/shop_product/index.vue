@@ -7,58 +7,63 @@
             </span>
             </a>
             {{shop.title}}
-            <span class="shop_product_top right_0">
+            <span class="shop_product_top right_0" 
+                v-bind:class="{ 'flag_true': flag }"
+                @click="flagAdd">
                 <i class="fa fa-star-o" aria-hidden="true"></i>
             </span>
         </div>
         <div class="shop_product_main">
-            <div>
-                <div class="ibox-content">
-                    <div class="product-count" flex="main:justify">
-                        <span class="sp1">
-                                    补货 <i v-if="addUp">{{addUp}}</i>
-                                </span>
-                        <span class="sp1">
-                                    结账 <i v-if="outUp">{{outUp}}</i>
-                                </span>
-                    </div>
+            <div class="ibox-content">
+                <div class="product-count" flex="main:justify">
+                    <span class="sp1">
+                                补货 <i v-if="addUp">{{addUp}}</i>
+                            </span>
+                    <span class="sp1">
+                                结账 <i v-if="outUp">{{outUp}}</i>
+                            </span>
+                </div>
 
-                    <div class="flex-container">
-                        <table>
-                           
-                                <tr  v-for="product in products">
-                                    <td class="td1" @click="addProduct($index,product)">
-                                        <a class="is-click" >
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                            <i v-if="product.add"  class="number">{{ product.add }}</i>
-                                        </a>
-                                    </td>
-                                    <td class="td2">
-                                        {{ product.name }}
-                                    </td>
-                                    <td class="td3">
-                                        {{ product.price }} /{{ product.norm }}
-                                    </td>
-                                    <td class="td4">
-                                        {{ product.reserve }}
-                                    </td>
-                                    <td class="td5" @click="outProduct($index,product)">
-                                        <a class="is-click" >
-                                            <i class="fa fa-chain-broken" aria-hidden="true"></i>
-                                            <i v-if="product.out" class="number">- {{ product.out }} </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                           
-                        </table>
+                <div class="flex-container">
+                    <table>
+                        
+                            <tr  v-for="product in products">
+                                <td class="td1" @click="addProduct($index,product)">
+                                    <a class="is-click" >
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <i v-if="product.add"  class="number">{{ product.add }}</i>
+                                    </a>
+                                </td>
+                                <td class="td2">
+                                    {{ product.name }}
+                                </td>
+                                <td class="td3">
+                                    {{ product.price }} /{{ product.norm }}
+                                </td>
+                                <td class="td4">
+                                    {{ product.reserve }}
+                                </td>
+                                <td class="td5" @click="outProduct($index,product)">
+                                    <a class="is-click" >
+                                        <i class="fa fa-chain-broken" aria-hidden="true"></i>
+                                        <i v-if="product.out" class="number">- {{ product.out }} </i>
+                                    </a>
+                                </td>
+                            </tr>
+                        
+                    </table>
 
-                    </div>
                 </div>
             </div>
-
             <button type="button" class="btn btn-primary jui-btn" @click="saveFrom">
-                        保存
+                保存
              </button>
+             <div class="product-time">
+                 {{ anlaTime }}
+             </div>
+        </div>
+        <div class="shop_product_footer">
+            打印小票
         </div>
     </div>
     </div>
@@ -73,19 +78,22 @@
             this.getProductData().then(function () {
             });
             vm.winW = window.innerWidth;
-         
+            vm.nowTime();
         },
         data: function () {
             return {
-                title: '产品列表',
                 winW:320,
                 addUp:0,
                 outUp:0,
+                shop_id:0,
                 products:[],
                 shop:{},
                 page: 1,
                 pageSize: 15,
                 count: 0,
+                anlaTime:'',
+                flag:false,
+                enime:2000,
                 data: []
             }
         },
@@ -120,6 +128,21 @@
                     });
                 }.bind(this));
 
+            },
+            nowTime:function(){
+                let vm = this;
+                let tm = new Date();
+                let year = tm.getFullYear();
+                let month = tm.getMonth();
+                let day = tm.getDate();
+                let hours = tm.getHours();
+                let min = tm.getMinutes();
+                let sec = tm.getSeconds();
+                console.log(year)
+                vm.anlaTime = year+'/'+ month + '/' + day + ' ' + hours + ':' + min;
+                setTimeout(function(){
+                    vm.nowTime();
+                },30000)
             },
             dealWith: function (products,shop) {
                 let vm = this;
@@ -231,6 +254,19 @@
                     this.$toast['success'](data.msg);
                     console.log(data);
                 });
+            },
+            flagAdd:function(){
+                let vm = this;
+                vm.flag = true;
+                this.$http.put('house/flag/' + this.shop_id).then(function (result) {
+                    let data = result.data;
+                    if (data.errors) {
+                        this.errors = data.errors;
+                    }
+                    
+                    console.log(data);
+                });
+                
             }
         },
         events: {
