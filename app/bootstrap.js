@@ -5,8 +5,6 @@ import Toast from './plugins/toast';
 import TouchRipple from 'vue-touch-ripple';
 
 
-
-
 Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(Toast);

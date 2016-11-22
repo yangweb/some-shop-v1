@@ -38,3 +38,29 @@
         
     }
 }
+.hidden{
+    display: none;
+}
+
+.getLoading{
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .5);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 60px 60px;
+    background-image: url(/app/assets/img/gps.svg);
+    .loading-text{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        color: #FFF;
+        padding: 20px;
+    }
+}
